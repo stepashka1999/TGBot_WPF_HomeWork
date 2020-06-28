@@ -1,0 +1,75 @@
+﻿<Window x:Class="TGBot_WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TGBot_WPF"
+        mc:Ignorable="d"
+        MinHeight="300"
+        MinWidth="380"
+        Title="Telegram Bot" Height="450" Width="800" Background="#FF3C3C3C" Closing="Window_Closing">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="SendText_tb" Grid.Column="1" 
+                 HorizontalAlignment="Stretch" 
+                 Height="95"
+                 Margin="10,50,10,0" 
+                 TextWrapping="Wrap" 
+                 VerticalAlignment="Top"
+                 BorderBrush="{x:Null}" 
+                 Style="{DynamicResource MyTextBoxStyle}" 
+                 Background="#FF5D5D5D" 
+                 Foreground="White"
+                 />
+        <Button x:Name="Send_btn"
+            Content="Send"
+            Grid.Column="1"
+            HorizontalAlignment="Stretch"
+            Margin="10,150,10,0" 
+            VerticalAlignment="Top" 
+            Height="32"
+            Style="{DynamicResource MyButton}" 
+            Foreground="White"
+            BorderBrush="#FFC9C9C9" 
+            Background="#FF3C3C3C" Click="Send_btn_Click"
+            />
+        <Button x:Name="SaveChatHistory_btn"
+            Grid.Column="1" 
+            Content="Save With All Users" 
+            Margin="10,202,10,0"
+            Height="32"
+            HorizontalAlignment="Stretch" 
+            VerticalAlignment="Top" 
+            Style="{DynamicResource MyButton}"
+            Background="#FF3C3C3C" 
+            BorderBrush="#FFD4D4D4" 
+            Foreground="White" Click="SaveHistory_btn" 
+            />
+        <Label Content="To " Grid.Column="1" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top" Foreground="White" Width="22"/>
+        <Label Content="{Binding ElementName=Chat_lb, Path=SelectedItem.Name}" Grid.Column="1" HorizontalAlignment="Left" Margin="37,19,0,0" VerticalAlignment="Top" Foreground="White" Width="116"/>
+        <ListBox x:Name="Chat_lb" 
+            HorizontalAlignment="Stretch" 
+            VerticalAlignment="Stretch" Background="#FF3C3C3C" Foreground="White">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}" FontSize="14" Foreground="LightBlue" />
+                        <TextBlock Text="{Binding Message}" FontSize="12"/>
+                        <TextBlock Text="{Binding Time}" FontSize="8" Foreground="LightGray"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <GridSplitter 
+            Grid.Column="0" 
+            VerticalAlignment="Stretch"
+            Width="3" Background="#FFA9C4C7">
+            <GridSplitter.Effect>
+                <DropShadowEffect Color="White" BlurRadius="15" Direction="10" ShadowDepth="0"/>
+            </GridSplitter.Effect>
+        </GridSplitter>
+    </Grid>
+</Window>
